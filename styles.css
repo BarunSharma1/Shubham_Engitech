@@ -13,22 +13,15 @@
   box-sizing: border-box;
 }
 
-/* ── DARK THEME (default) ─────────────────────────────── */
+/* ── DARK THEME — commented out; light is the default ─── */
+/*
 :root {
-  /* Brand colours */
-  --royal: #5C155A;
-  --plum: #3C1830;
-  --mauve: #653B57;
-  --blush: #F5F0F4;
   --surface: #0D0A0F;
   --card: #14101A;
   --white: #FFFFFF;
   --text: #d8d0da;
   --muted: #8d7e91;
   --heading: #FFFFFF;
-
-  --grad: linear-gradient(135deg, var(--royal), var(--plum));
-  --grad-glow: linear-gradient(135deg, #9b3d99, #5C155A);
 
   --header-bg: rgba(13, 10, 15, .88);
   --header-shadow: 0 1px 30px rgba(0, 0, 0, .5);
@@ -39,6 +32,19 @@
   --glass-border: rgba(255, 255, 255, .08);
   --overlay-text: rgba(255, 255, 255, .7);
   --nav-active: var(--white);
+}
+*/
+
+/* ── BASE VARIABLES (shared across themes) ────────────── */
+:root {
+  /* Brand colours */
+  --royal: #5C155A;
+  --plum: #3C1830;
+  --mauve: #653B57;
+  --blush: #F5F0F4;
+
+  --grad: linear-gradient(135deg, var(--royal), var(--plum));
+  --grad-glow: linear-gradient(135deg, #9b3d99, #5C155A);
 
   /* Fonts */
   --f-main: 'Inter', -apple-system, sans-serif;
@@ -60,9 +66,8 @@
   --nav-h: 72px;
 }
 
-/* ── LIGHT THEME ──────────────────────────────────────── */
+/* ── LIGHT THEME (default) ────────────────────────────── */
 :root {
-  /* Migrated light theme defaults */
   --surface: #F8F5FA;
   --card: #FFFFFF;
   --white: #1a1020;
@@ -722,6 +727,12 @@ strong {
   transition: transform .35s var(--ease), width .35s var(--ease), opacity .25s;
 }
 
+/* On initial load the header has no .scrolled class — hero is always dark,
+   so hamburger lines must always be white over it */
+#header:not(.scrolled) .mt-line {
+  background: #ffffff !important;
+}
+
 .mt-line:nth-child(1) {
   width: 28px;
 }
@@ -818,6 +829,17 @@ strong {
   background: transparent;
   color: var(--white);
   border: 1.5px solid rgba(255, 255, 255, .3);
+}
+
+/* Hero always has a dark overlay — keep btn-line clearly white regardless of theme */
+.hero .btn-line {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, .45);
+}
+
+.hero .btn-line:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, .12);
 }
 
 .btn-line:hover {
